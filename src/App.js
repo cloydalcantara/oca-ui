@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route } from 'react-router4-with-layouts';
+import { Router, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+
+import { loginLayout } from './layouts/login';
+// import { dashboardLayout } from './layouts/dashboard';
+// import { Dashboard } from './pages/dashboard/index';
+import { Login } from './pages/login/index';
+
+const history = createBrowserHistory();
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router history={history} basename={`${process.env.PUBLIC_URL}`} >
+        <Switch>
+          {/* <Route path="/" component={Dashboard} exact layout={dashboardLayout} /> */}
+          <Route path="/login" component={Login} layout={loginLayout} />
+        </Switch>
+      </Router>
     );
   }
 }
